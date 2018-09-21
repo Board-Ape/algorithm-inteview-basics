@@ -23,13 +23,17 @@ describe('Node', () => {
   test('Node can remove children', () => {
     const n = new Node('a');
     n.add('b');
-    expect(n.children.length).toEqual(1);
+    n.add('c');
+    n.add('d');
+    expect(n.children.length).toEqual(3);
     n.remove('b');
-    expect(n.children.length).toEqual(0);
+    expect(n.children.length).toEqual(2);
+    expect(n.children[0].data).toEqual('c');
+    expect(n.children[1].data).toEqual('d');
   });
 });
 
-describe.skip('Tree', () => {
+describe('Tree', () => {
   test('starts empty', () => {
     const t = new Tree();
     expect(t.root).toEqual(null);
