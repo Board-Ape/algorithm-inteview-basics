@@ -56,6 +56,10 @@ class Tree {
             const node = arr.shift();
 
             arr.unshift(...node.children);
+
+            // How would you implement this without the spread operator?
+            
+
             fn(node);
         }
 
