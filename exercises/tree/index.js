@@ -31,22 +31,14 @@ class Tree {
     }
 
     traverseBF(fn) {
-       const arr = [this.root];
+        const arr = [this.root];
 
-       while (arr.length) {
-           const node = arr.shift();
+        while (arr.length) {
+            const node = arr.shift()
 
-           arr.push(...node.children);
-
-            // OR
-        
-            // for (let child of node.children) {
-            //      arr.push(child);
-            // }
-        
-
-           fn(node);
-       }
+            arr.push(...node.children)
+            fn(node)
+        }
     }
 
     traverseDF(fn) {
@@ -55,15 +47,46 @@ class Tree {
         while (arr.length) {
             const node = arr.shift();
 
-            arr.unshift(...node.children);
-
-            // How would you implement this without the spread operator?
-            
-
-            fn(node);
+            arr.unshift(...node.children)
+            fn(node)
         }
-
-     }
+    }
 }
 
 module.exports = { Tree, Node };
+
+
+// traverseBF(fn) {
+//     const arr = [this.root];
+
+//     while (arr.length) {
+//         const node = arr.shift();
+
+//         arr.push(...node.children);
+
+//         // OR
+
+//         // for (let child of node.children) {
+//         //      arr.push(child);
+//         // }
+
+
+//         fn(node);
+//     }
+// }
+
+// traverseDF(fn) {
+//     const arr = [this.root];
+
+//     while (arr.length) {
+//         const node = arr.shift();
+
+//         arr.unshift(...node.children);
+
+//         // How would you implement this without the spread operator?
+
+
+//         fn(node);
+//     }
+
+// }
