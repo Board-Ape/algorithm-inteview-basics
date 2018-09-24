@@ -20,14 +20,14 @@ class Node {
 
     insert(data) {
         if (data < this.data && this.left) {
-            this.left.insert(data);
+            return this.left.insert(data);
         } 
         else if (data < this.data) {
             this.left = new Node(data);
         }
 
         if (data > this.data && this.right) {
-            this.right.insert(data);
+            return this.right.insert(data);
         }
         else if (data > this.data) {
             this.right = new Node(data);
@@ -36,18 +36,23 @@ class Node {
 
     contains(data) {
         if (data === this.data) {
-            return true
+            return this;
         }
 
         if (data < this.data && this.left) {
-            this.left.contains(data);
+            return this.left.contains(data);
+        }
+        else if (data < this.data) {
+            return null;
         }
 
         if (data > this.data && this.right) {
-            this.right.contains(data)
+            return this.right.contains(data);
+        }
+        else if (data > this.data) {
+            return null;
         }
 
-        return null;
     }
 
 }
