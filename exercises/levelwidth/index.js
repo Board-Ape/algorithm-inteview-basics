@@ -17,6 +17,7 @@ function levelWidth(root) {
     // A neat trick to not using a counter index pointer:
     // utilize the length of the array - 1 to obtain the 
     // current index.
+    
     let countersArray = [0];
     let treeArray = [root, 'stop'];
 
