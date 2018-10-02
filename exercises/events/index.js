@@ -9,9 +9,14 @@ class Events {
   }
   // Register an event handler
   on(eventName, callback) {
-    this.events[eventName] ? 
-      this.events[eventName].push(callback) :
+    if (this.events[eventName]) {
+      this.events[eventName].push(callback);
+    } else {
       this.events[eventName] = [callback];
+    } 
+    // this.events[eventName] ? 
+    //   this.events[eventName].push(callback) :
+    //   this.events[eventName] = [callback];
   }
 
   // Trigger all callbacks associated
@@ -32,3 +37,13 @@ class Events {
 }
 
 module.exports = Events;
+
+
+// How would you design Twitter?
+
+// High level concepts. Which areas are you focused on?
+
+// Identify core features.
+// Possible implementation.
+// Identify difficulties.
+// Solutions to scaling.
