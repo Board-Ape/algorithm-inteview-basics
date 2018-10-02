@@ -29,6 +29,11 @@ function matrix(n) {
     let endC = n - 1;
     let endR = n - 1;
 
+    while (startC <= endC && startR <= endR) {
+
+    }
+
+    return results
 }
 
 module.exports = matrix;
