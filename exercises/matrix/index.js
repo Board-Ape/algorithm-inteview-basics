@@ -18,7 +18,6 @@
 function matrix(n) {
     const results = [];
  
-    // For loop for each number
     for (let i = 0; i < n; i++) {
         results.push([])
     }
@@ -30,7 +29,6 @@ function matrix(n) {
     let endR = n - 1;
 
     while (startC <= endC && startR <= endR) {
-        //Top Row
         for (let i = startC; i <= endC; i++) {
             results[startR][i] = counter;
             counter++;
@@ -38,7 +36,6 @@ function matrix(n) {
 
         startR++;
 
-        //Right Column
         for (let i = startR; i <= endR; i++) {
             results[i][endC] = counter;
             counter++;
@@ -46,15 +43,13 @@ function matrix(n) {
 
         endC--;
 
-        //Bottom Row
         for (let i = endC; i >= startC; i--) {
             results[endR][i] = counter;
             counter++;
         }
 
         endR--;
-        
-        //Left Column
+
         for (let i = endR; i >= startR; i--) {
             results[i][startC] = counter;
             counter++;
