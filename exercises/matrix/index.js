@@ -53,7 +53,14 @@ function matrix(n) {
         }
 
         endR--;
+        
+        //Left Column
+        for (let i = endR; i >= startR; i--) {
+            results[i][startC] = counter;
+            counter++;
+        }
 
+        startC++;
 
     }
 
