@@ -9,14 +9,20 @@ class Events {
   }
   // Register an event handler
   on(eventName, callback) {
-    return $('button').on( eventName = () => {
-      return callback
-    })
+    this.events[eventName] ? 
+      this.events[eventName].push(callback) :
+      this.events[eventName] = [callback];
   }
 
   // Trigger all callbacks associated
   // with a given eventName
-  trigger(eventName) {}
+  trigger(eventName) {
+    if (this.events[eventName]) {
+      for (let cb of this.events[eventName]) {
+        cb();
+      }
+    }
+  }
 
   // Remove all event handlers associated
   // with the given eventName
