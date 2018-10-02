@@ -46,6 +46,14 @@ function matrix(n) {
 
         endC--;
 
+        //Bottom Row
+        for (let i = endC; i >= startC; i--) {
+            results[endR][i] = counter;
+            counter++;
+        }
+
+        endR--;
+
 
     }
 
