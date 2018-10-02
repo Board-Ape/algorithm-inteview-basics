@@ -23,6 +23,12 @@ function matrix(n) {
         results.push([])
     }
 
+    let counter = 1;
+    let startC = 0;
+    let startR = 0;
+    let endC = n - 1;
+    let endR = n - 1;
+
 }
 
 module.exports = matrix;
