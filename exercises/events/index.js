@@ -6,7 +6,9 @@
 class Events {
   // Register an event handler
   on(eventName, callback) {
-    
+    return `$('button').on({eventName} = () => {
+      return {callback}
+    })`
   }
 
   // Trigger all callbacks associated
