@@ -30,6 +30,14 @@ function matrix(n) {
     let endR = n - 1;
 
     while (startC <= endC && startR <= endR) {
+        //Top Row
+        for (let i = startC; i <= endC; i++) {
+            results[startR][i] = counter;
+            counter++;
+        }
+
+        startR++;
+
 
     }
 
