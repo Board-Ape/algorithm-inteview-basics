@@ -23,6 +23,20 @@ Full Answer:
 
 Code Example:
 
+const globalVar = 'global variable'
 
+function parentFunc(parentParam) {
+    const parentVar = 'parent variable'
+
+    function childFunc(childParam) {
+        const childVar = 'children variable'
+
+        return globalVar + " " + parentParam + " " + parentVar + " " + childParam + " " + childVar
+    }
+
+    return childFunc('child parameter')
+}
+
+parentFunc('parent parameter')
 
 */
