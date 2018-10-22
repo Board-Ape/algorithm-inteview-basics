@@ -28,7 +28,13 @@ Describe what happens when a user types google.com into the browser?
 
 In as much detail as possible, explain how you would localize an application?
 
-
+1) Determine where to localize language wise
+    - Deep localization or Minimum Viable Localization
+2) Choose the translators
+    - In-house, Crowdsourcing, Outsourcing
+3) Internationalize your application 
+    - Extract UI strings and create resource files
+4) Set-up translators abd reference guides for translators
 
 =================================
 =================================
