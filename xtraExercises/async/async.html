@@ -24,34 +24,108 @@
             // first();
 
 
+            /* 
 
-                function getRecipe() {
-                    setTimeout(() => {
-                        // simulate an API data set
-                        const recipeID = [ 814, 123, 564, 921 ]
-                        console.log(recipeID)
+            Synchronous vs. Asynchronous
 
-                        setTimeout(id => {
-                            const recipe = {
-                                title: 'Fresh tomato pasta',
-                                publisher: 'Jonas'
-                            }
-                            console.log(`${id}: ${recipe.title}`);
+            Why does the code move on? Example of Image Processing.
+                - We do not wait for code to execute and process. 
+                - Code can block other code from functioning
 
-                            setTimeout(publisher => {
-                                const recipe2 = {
-                                    title: 'Italian Pizza',
-                                    publisher: 'Jonas'
-                                }
-                                console.log(recipe2)
-                            }, 1500, recipe.publisher)
-                        }, 1000, recipeID[2]);
-                    }, 1500);
-                }
+            Event Loop
+                - Execution Stack - Execution Stack is placed here
+                - WEB APIs: setTimeout(), DOM events, XMLHttpRequest()
+                - Message Queue: receives the webAPI callback function
+                - Event Loop pushes the callback function onto the execution stack 
+            
+            */
+// <!-- 
+//                 function getRecipe() {
+//                     setTimeout(() => {
+//                         // simulate an API data set
+//                         const recipeID = [ 814, 123, 564, 921 ]
+//                         console.log(recipeID)
 
-                getRecipe();
+//                         setTimeout(id => {
+//                             const recipe = {
+//                                 title: 'Fresh tomato pasta',
+//                                 publisher: 'Jonas'
+//                             }
+//                             console.log(`${id}: ${recipe.title}`);
 
-        </script>
+//                             setTimeout(publisher => {
+//                                 const recipe2 = {
+//                                     title: 'Italian Pizza',
+//                                     publisher: 'Jonas'
+//                                 }
+//                                 console.log(recipe2)
+//                             }, 1500, recipe.publisher)
+//                         }, 1000, recipeID[2]);
+//                     }, 1500);
+//                 }
+
+//                 getRecipe(); 
+            
+
+            /* 
+            
+            What is a promise? 
+                Promise: 
+                    - Object that keeps track whether a certain event has happened
+                    - Determines what happens after the event has happened
+                    - Implements the concept of a future value that we're expecting
+
+                    - PENDING => Event Happens => SETTLED/RESOLVED (FULFILLED/REJECTION)
+
+            */
+
+            const getIDs = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve( [814, 123, 564, 921] );
+                }, 1500)
+            }); 
+
+            const getRecipe = recID => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(ID => {
+                        const recipe = {
+                            title: 'Fresh tomato pasta',
+                            publisher: 'Jonas'
+                        }
+                        resolve(`${ID}: ${recipe.title}`)
+                    }, 1500, recID)
+                })
+            }
+
+            const getRelated = publisher => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(pub => {
+                       const recipe = {
+                            title: 'Italian Pizza',
+                            publisher: 'Jonas'
+                        }
+                        resolve(`${pub}: ${recipe.title}`); 
+                    }, 1500, publisher)
+                })
+            }
+
+            getIDs
+                .then(IDs => {
+                    console.log(IDs)
+                    return getRecipe(IDs[2])
+                })
+                .then(recipe => {
+                    console.log(recipe)
+                    return getRelated(recipe)
+                })
+                .then(publisher => {
+                    console.log(publisher)
+                })
+                .catch(error => {
+                    console.log(IDs)
+                })
+            
+         </script>
     </body>
 </html>
 
@@ -65,19 +139,3 @@
 
 
 
-
-/* 
-
-Synchronous vs. Asynchronous
-
-Why does the code move on? Example of Image Processing.
-    - We do not wait for code to execute and process. 
-    - Code can block other code from functioning
-
-Event Loop
-    - Execution Stack - Execution Stack is placed here
-    - WEB APIs: setTimeout(), DOM events, XMLHttpRequest()
-    - Message Queue: receives the webAPI callback function
-    - Event Loop pushes the callback function onto the execution stack 
- 
-*/
