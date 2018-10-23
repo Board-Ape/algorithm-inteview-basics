@@ -9,22 +9,62 @@
     <body>
         <h1>Async JavaScript</h1>
         <script>
-            const second  = () => {
-                setTimeout(() => {
-                    console.log('Async Hey There')
-                }, 2000)
-            }
+            // const second  = () => {
+            //     setTimeout(() => {
+            //         console.log('Async Hey There')
+            //     }, 2000)
+            // }
 
-            const first = () => {
-                console.log('Hey there');
-                second();
-                console.log('The end');
-            } 
+            // const first = () => {
+            //     console.log('Hey there');
+            //     second();
+            //     console.log('The end');
+            // } 
 
-            first();
+            // first();
+
+
+
+                function getRecipe() {
+                    setTimeout(() => {
+                        // simulate an API data set
+                        const recipeID = [ 814, 123, 564, 921 ]
+                        console.log(recipeID)
+
+                        setTimeout(id => {
+                            const recipe = {
+                                title: 'Fresh tomato pasta',
+                                publisher: 'Jonas'
+                            }
+                            console.log(`${id}: ${recipe.title}`);
+
+                            setTimeout(publisher => {
+                                const recipe2 = {
+                                    title: 'Italian Pizza',
+                                    publisher: 'Jonas'
+                                }
+                                console.log(recipe2)
+                            }, 1500, recipe.publisher)
+                        }, 1000, recipeID[2]);
+                    }, 1500);
+                }
+
+                getRecipe();
+
         </script>
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 /* 
 
