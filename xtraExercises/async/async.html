@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Async JavaScript</title>
+    </head>
+    <body>
+        <h1>Async JavaScript</h1>
+        <script>
+            // const second  = () => {
+            //     setTimeout(() => {
+            //         console.log('Async Hey There')
+            //     }, 2000)
+            // }
+
+            // const first = () => {
+            //     console.log('Hey there');
+            //     second();
+            //     console.log('The end');
+            // } 
+
+            // first();
+
+
+            /* 
+
+            Synchronous vs. Asynchronous
+
+            Why does the code move on? Example of Image Processing.
+                - We do not wait for code to execute and process. 
+                - Code can block other code from functioning
+
+            Event Loop
+                - Execution Stack - Execution Stack is placed here
+                - WEB APIs: setTimeout(), DOM events, XMLHttpRequest()
+                - Message Queue: receives the webAPI callback function
+                - Event Loop pushes the callback function onto the execution stack 
+            
+            */
+// <!-- 
+//                 function getRecipe() {
+//                     setTimeout(() => {
+//                         // simulate an API data set
+//                         const recipeID = [ 814, 123, 564, 921 ]
+//                         console.log(recipeID)
+
+//                         setTimeout(id => {
+//                             const recipe = {
+//                                 title: 'Fresh tomato pasta',
+//                                 publisher: 'Jonas'
+//                             }
+//                             console.log(`${id}: ${recipe.title}`);
+
+//                             setTimeout(publisher => {
+//                                 const recipe2 = {
+//                                     title: 'Italian Pizza',
+//                                     publisher: 'Jonas'
+//                                 }
+//                                 console.log(recipe2)
+//                             }, 1500, recipe.publisher)
+//                         }, 1000, recipeID[2]);
+//                     }, 1500);
+//                 }
+
+//                 getRecipe(); 
+            
+
+            /* 
+            
+            What is a promise? 
+                Promise: 
+                    - Object that keeps track whether a certain event has happened
+                    - Determines what happens after the event has happened
+                    - Implements the concept of a future value that we're expecting
+
+                    - PENDING => Event Happens => SETTLED/RESOLVED (FULFILLED/REJECTION)
+
+            */
+
+            // const getIDs = new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //         resolve( [814, 123, 564, 921] );
+            //     }, 1500)
+            // }); 
+
+            // const getRecipe = recID => {
+            //     return new Promise((resolve, reject) => {
+            //         setTimeout(ID => {
+            //             const recipe = {
+            //                 title: 'Fresh tomato pasta',
+            //                 publisher: 'Jonas'
+            //             }
+            //             resolve(`${ID}: ${recipe.title}`)
+            //         }, 1500, recID)
+            //     })
+            // }
+
+            // const getRelated = publisher => {
+            //     return new Promise((resolve, reject) => {
+            //         setTimeout(pub => {
+            //            const recipe = {
+            //                 title: 'Italian Pizza',
+            //                 publisher: 'Jonas'
+            //             }
+            //             resolve(`${pub}: ${recipe.title}`); 
+            //         }, 1500, publisher)
+            //     })
+            // }
+
+            // getIDs
+            //     .then(IDs => {
+            //         console.log(IDs)
+            //         return getRecipe(IDs[2])
+            //     })
+            //     .then(recipe => {
+            //         console.log(recipe)
+            //         return getRelated(recipe)
+            //     })
+            //     .then(publisher => {
+            //         console.log(publisher)
+            //     })
+            //     .catch(error => {
+            //         console.log(IDs)
+            //     })
+            
+            // Using Async/Await
+            // async function getRecipesAW() {
+            //     const IDs = await getIDs;
+            //     console.log(IDs);
+            //     const recipe = await getRecipe(IDs[2]);
+            //     console.log(recipe);
+            //     const publisher = await getRelated(recipe);
+            //     console.log(publisher);
+                
+            //     return recipe;
+            // }
+            // Remember that Aync returns a promise that needs to be consumed
+            // getRecipesAW()
+            //     .then(response => {
+            //         console.log(`${response} is the best ever!`) 
+            //     });
+
+            
+            // CORS - Developers on the other APIs implement this.
+            // function getPlanets() {
+            //     fetch('https://swapi.co/api/people/1/')
+            //         .then(response => {
+            //             return response.json();
+            //         })
+            //         .then(data => {
+            //             const homeAPI = data.homeworld;
+            //             fetch(homeAPI)
+            //                 .then(response => response.json())
+            //                 .then(data => {
+            //                     const homeName = data.name
+            //                     console.log(homeName)
+            //                 }) 
+            //         })
+            //         .catch(error => {
+            //             console.log(error)
+            //         })
+            // }
+
+            async function getPlanets() {
+                try {
+                    const response = await fetch('https://swapi.co/api/people/1/')
+                    const data = await response.json()
+                    const name = await data.name
+                    const homeURL = await data.homeworld
+                    const responseHome = await fetch(homeURL)
+                    const dataHome = await responseHome.json()
+                    const home = await dataHome.name
+                    return `${name} lives on the planet of ${home}`
+                } catch(error) {
+                    alert(error)
+                }
+            }
+
+            getPlanets()
+                .then(response => console.log(response))
+                
+
+         </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
