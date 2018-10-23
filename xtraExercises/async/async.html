@@ -144,22 +144,43 @@
 
             
             // CORS - Developers on the other APIs implement this.
-            fetch('https://swapi.co/api/people/1/')
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const homeAPI = data.homeworld;
-                    fetch(homeAPI)
-                        .then(response => response.json())
-                        .then(data => {
-                            const homeName = data.name
-                            console.log(homeName)
-                        }) 
-                })
-                .catch(error => {
-                    console.log(error)
-                })
+            // function getPlanets() {
+            //     fetch('https://swapi.co/api/people/1/')
+            //         .then(response => {
+            //             return response.json();
+            //         })
+            //         .then(data => {
+            //             const homeAPI = data.homeworld;
+            //             fetch(homeAPI)
+            //                 .then(response => response.json())
+            //                 .then(data => {
+            //                     const homeName = data.name
+            //                     console.log(homeName)
+            //                 }) 
+            //         })
+            //         .catch(error => {
+            //             console.log(error)
+            //         })
+            // }
+
+            async function getPlanets() {
+                try {
+                    const response = await fetch('https://swapi.co/api/people/1/')
+                    const data = await response.json()
+                    const name = await data.name
+                    const homeURL = await data.homeworld
+                    const responseHome = await fetch(homeURL)
+                    const dataHome = await responseHome.json()
+                    const home = await dataHome.name
+                    return `${name} lives on the planet of ${home}`
+                } catch(error) {
+                    alert(error)
+                }
+            }
+
+            getPlanets()
+                .then(response => console.log(response))
+                
 
          </script>
     </body>
