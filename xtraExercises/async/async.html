@@ -79,35 +79,35 @@
 
             */
 
-            const getIDs = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve( [814, 123, 564, 921] );
-                }, 1500)
-            }); 
+            // const getIDs = new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //         resolve( [814, 123, 564, 921] );
+            //     }, 1500)
+            // }); 
 
-            const getRecipe = recID => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(ID => {
-                        const recipe = {
-                            title: 'Fresh tomato pasta',
-                            publisher: 'Jonas'
-                        }
-                        resolve(`${ID}: ${recipe.title}`)
-                    }, 1500, recID)
-                })
-            }
+            // const getRecipe = recID => {
+            //     return new Promise((resolve, reject) => {
+            //         setTimeout(ID => {
+            //             const recipe = {
+            //                 title: 'Fresh tomato pasta',
+            //                 publisher: 'Jonas'
+            //             }
+            //             resolve(`${ID}: ${recipe.title}`)
+            //         }, 1500, recID)
+            //     })
+            // }
 
-            const getRelated = publisher => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(pub => {
-                       const recipe = {
-                            title: 'Italian Pizza',
-                            publisher: 'Jonas'
-                        }
-                        resolve(`${pub}: ${recipe.title}`); 
-                    }, 1500, publisher)
-                })
-            }
+            // const getRelated = publisher => {
+            //     return new Promise((resolve, reject) => {
+            //         setTimeout(pub => {
+            //            const recipe = {
+            //                 title: 'Italian Pizza',
+            //                 publisher: 'Jonas'
+            //             }
+            //             resolve(`${pub}: ${recipe.title}`); 
+            //         }, 1500, publisher)
+            //     })
+            // }
 
             // getIDs
             //     .then(IDs => {
@@ -126,21 +126,40 @@
             //     })
             
             // Using Async/Await
-            async function getRecipesAW() {
-                const IDs = await getIDs;
-                console.log(IDs);
-                const recipe = await getRecipe(IDs[2]);
-                console.log(recipe);
-                const publisher = await getRelated(recipe);
-                console.log(publisher);
+            // async function getRecipesAW() {
+            //     const IDs = await getIDs;
+            //     console.log(IDs);
+            //     const recipe = await getRecipe(IDs[2]);
+            //     console.log(recipe);
+            //     const publisher = await getRelated(recipe);
+            //     console.log(publisher);
                 
-                return recipe;
-            }
+            //     return recipe;
+            // }
             // Remember that Aync returns a promise that needs to be consumed
-            getRecipesAW()
+            // getRecipesAW()
+            //     .then(response => {
+            //         console.log(`${response} is the best ever!`) 
+            //     });
+
+            
+            // CORS - Developers on the other APIs implement this.
+            fetch('https://swapi.co/api/people/1/')
                 .then(response => {
-                    console.log(`${response} is the best ever!`) 
-                });
+                    return response.json();
+                })
+                .then(data => {
+                    const homeAPI = data.homeworld;
+                    fetch(homeAPI)
+                        .then(response => response.json())
+                        .then(data => {
+                            const homeName = data.name
+                            console.log(homeName)
+                        }) 
+                })
+                .catch(error => {
+                    console.log(error)
+                })
 
          </script>
     </body>
