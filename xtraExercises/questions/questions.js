@@ -46,25 +46,42 @@ Tell me two advantages of testing your code?
 
 Name three strategies for fixing cross - browser inconsistencies?
 
+1) Polyfills - provide features that don't exist at all: converting es6 to es5
+2) <DOCTYPE>
+3) Using prefixes within the CSS
+4) Validators for CSS and HTML
+
 =================================
 =================================
 
 What are some tools and strategies you use to prevent shipping unstable code to production ?
+
+1) Testing - Continuous Integration: Unit, Integration and Functional
+2) Having mutiple environemnts: Production, Deployment, Staging
 
 =================================
 =================================
 
 What factors influence whether you’ll take a progressive enhancement vs. graceful degradation approach to building an application?
 
+1) Speed and time
+
 =================================
 =================================
 
 Define the term ‘MVC’ and explain how an application is architected when following MVC patterns?
 
+This is a design pattern
+1) Model: cares about data. How is the data being retrieved
+2) View: cares about DOM. It's the browser API you use for HTML manipulations
+3) Controller: cares about event handling. 
+
 =================================
 =================================
 
-What does CORS stand for and what issue does it address ?
+What does CORS stand for and what issue does it address?
+
+
 
 =================================
 =================================
