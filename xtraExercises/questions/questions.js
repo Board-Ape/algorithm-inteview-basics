@@ -81,37 +81,70 @@ This is a design pattern
 
 What does CORS stand for and what issue does it address?
 
-
+1) Crosss Origin Resource Sharing = Who or how data can be accessed
 
 =================================
 =================================
 
 In as much detail as possible, describe the request - response cycle?
 
+1) Parsing URL
+    - Type URL into Browser
+        - Check first in Browser Cache, None => Check DNS
+        - DNS is simply a translator for the URL to IP
+    - Browser then parses the URL for protocol, host, request URI
+    - Forms an HTTP request
+2) Sending Request
+    - Socket connection opened => HTTP Request sent => Web Server Receives
+3) Server Response
+    - Host checks for info to process Request
+    - Sends back Response headers, and requested data
+4) Browser Rendering
+    - Browser receives to parse into the DOM and displays
+5) HTTP persistent connection
+    - Transmission Control Protocol - so a new connection doesn't always need to be sent
+
 =================================
 =================================
 
 Tell me 3 new features of CSS3.
+
+1) CSS Selectors and Psuedo-selectors
+2) RGBA color - transparency
+3) Broder-radius
+4) Drop-Shadows / Text Shadows
+5) Linear Gradients / Radial Gradients
 
 =================================
 =================================
 
 Can you describe what responsive design is to you and how you would implement it?
 
-=================================
-=================================
-
-What’s the difference between display: inline and display: inline - block ?
+- Responsive design is that approach that design and development should be based around varying scrren sizes.
 
 =================================
 =================================
 
-What is a pseudo class?What are they used for?
+What’s the difference between display: inline and display: inline-block ?
+
+- In terms of ignoring and respecting margins and padding
+    Inline = margin left and right are considered but not top or bottom
+    Inline-block = all margins are considered
 
 =================================
 =================================
 
-Describe z - index and how stacking context is formed?
+What's 
+
+=================================
+=================================
+
+What is a pseudo class? What are they used for?
+
+=================================
+=================================
+
+Describe z-index and how stacking context is formed?
 
 =================================
 =================================
@@ -121,7 +154,7 @@ If you have two elements inside of an outer containing element, one with float: 
 =================================
 =================================
 
-Why is it, in general, a good idea to leave the global scope of a website as- is and never touch it?
+Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
 
 =================================
 =================================
@@ -142,7 +175,7 @@ What is Ajax?
 =================================
 =================================
 
-What is "use strict";?What are the advantages and disadvantages to using it ?
+What is "use strict"? What are the advantages and disadvantages to using it ?
 
 =================================
 =================================
@@ -157,7 +190,7 @@ What are the pros and cons of using Promises instead of callbacks?
 =================================
 =================================
 
-What is a closure, and how / why would you use one?
+What is a closure, and how/swhy would you use one?
 
 =================================
 =================================
